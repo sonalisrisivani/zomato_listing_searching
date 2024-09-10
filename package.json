@@ -1,0 +1,23 @@
+{
+  "name": "anits-assign-sonalisrisivani",
+  "version": "1.0.0",
+  "description": "A project to list and search Zomato restaurants",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "csv-parser": "^3.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.0",
+    "nodemon": "^3.1.4",
+    "xlsx": "^0.18.5"
+  }
+}

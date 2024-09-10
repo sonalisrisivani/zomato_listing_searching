@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>Zomato</title>
+  <link rel="stylesheet" href="general.css">
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<%- include('header') %>
+
+
+
+
+
+<main>
+  <img class="bg-image" src="https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png" />
+  <div class="top">
+    <div class="center-content">
+      <img class="main-logo" src="/logo.png" alt="Zomato Logo" />
+      <h1>
+        Discover the best food & drinks in
+        <span class="place">Andhra Pradesh</span>
+      </h1>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="search_container">
+        <form action="/search" method="GET">
+          <div class="location">
+            <i data-feather="map-pin"></i>
+            <input id="location_box" placeholder="   Enter your Location." name="location" class="location-input" />
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="line"></div>
+          <div class="search">
+            <div class="search_icon">
+              <i data-feather="search"></i>
+            </div>
+            <input id="search_box" placeholder="Search for restaurant, cuisine or a dish" name="q" class="search_box" />
+          </div>
+          <button type="submit" class="hidden-submit-btn"></button> 
+             
+         <div class="sort">
+            <label for="sort">Sort By:</label>
+            <select name="sort" id="sort">
+              <option value="aggregate_rating">Rating</option>
+              <option value="average_cost_for_two">Cost for Two</option>
+              <option value="name">Name</option>
+            </select>
+          </div> 
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ <div class="main-body">
+    <div class="restaurant-list">
+      <% if (typeof results !== 'undefined' && results.length > 0) { %>
+        
+
+        <% results.forEach(restaurant => { %>
+          <div class="restaurant-card">
+            <h2><%= restaurant.name %></h2>
+            <p><%= restaurant.cuisines %></p>
+            <p>Average Cost for Two: <%= restaurant.average_cost_for_two %> <%= restaurant.currency %></p>
+            <p>Rating: <%= restaurant.aggregate_rating %> (<%= restaurant.rating_text %>)</p>
+            <a href="/restaurant/<%= restaurant.id %>">View Details</a>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No restaurants found matching your criteria.</p>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+
+
+<%- include('footer') %>
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+  feather.replace();
+</script>
+</body>
+</html>

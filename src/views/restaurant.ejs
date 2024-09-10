@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>Zomato</title>
+  <link rel="stylesheet" href="/general.css">
+  <link rel="stylesheet" href="/header.css">
+  <link rel="stylesheet" href="/footer.css">
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/pagination.css">
+  <style>
+    /* Add some basic styling for the pagination section */
+    .pagination-container {
+      margin-top: 30px;
+      padding: 20px;
+      border-top: 1px solid #ccc;
+    }
+    .pagination-container h2 {
+      margin-bottom: 15px;
+    }
+    .pagination-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .pagination-list li {
+      margin: 10px 0;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: #fff;
+      transition: background-color 0.3s;
+    }
+    .pagination-list a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+    }
+    .pagination-list a:hover {
+      background-color: #f0f0f0;
+    }
+    .pagination-list h3 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+    .pagination-list p {
+      margin: 5px 0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<br><br><br><br>
+<main>
+  <div class="restaurant-detail">
+    <h1><%= restaurant.name %></h1>
+    <img src="<%= restaurant.featured_image %>" alt="<%= restaurant.name %>">
+    <p><strong>Address:</strong> <%= restaurant.address %></p>
+    <p><strong>Cuisines:</strong> <%= restaurant.cuisines %></p>
+    <p><strong>Average Cost for Two:</strong> <%= restaurant.average_cost_for_two %> <%= restaurant.currency %></p>
+    <p><strong>Rating:</strong> <%= restaurant.aggregate_rating %> (<%= restaurant.rating_text %>)</p>
+    <p><strong>Votes:</strong> <%= restaurant.votes %></p>
+    <p><strong>Online Delivery:</strong> <%= restaurant.has_online_delivery ? 'Yes' : 'No' %></p>
+    <p><strong>Table Booking:</strong> <%= restaurant.has_table_booking ? 'Yes' : 'No' %></p>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-container">
+    <h2>Other Restaurants</h2>
+    <ul class="pagination-list">
+      <% paginatedResults.forEach(function(rest) { %>
+        <li>
+          <a href="/restaurant/<%= rest.id %>">
+            <h3><%= rest.name %></h3>
+            <p><strong>Location:</strong> <%= rest.location %></p>
+            <p><strong>Rating:</strong> <%= rest.aggregate_rating %></p>
+            <p><strong>Votes:</strong> <%= rest.votes %></p>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+</main>
+
+<%- include('footer') %>
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+  feather.replace();
+</script>
+</body>
+</html>
